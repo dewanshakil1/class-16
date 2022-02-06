@@ -36,16 +36,27 @@ modal.addEventListener("click", function (e) {
  * accordion-header
  */
 
+// accordion start
+const accHeader = document.querySelectorAll(".accordion-header");
+
 accHeader.forEach(items=>{
   items.addEventListener("click",function(){
-    items.classList.toggle("active")
-    if(items.classList.contains("active")){
+    accHeader.forEach(items =>{
+      if(items != this){
+        items.classList.remove("acc_active");
+        items.nextElementSibling.style.height="0px";
+    }
+    });
+    
+    items.classList.toggle("acc_active");
+
+
+    if(items.classList.contains("acc_active")){
       items.nextElementSibling.style.height= items.nextElementSibling.scrollHeight +"px";
     }
     else{
       items.nextElementSibling.style.height="0px";
-
     }
-  })
+  });
 
-})
+});
